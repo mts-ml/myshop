@@ -1,30 +1,43 @@
-# React + TypeScript + Vite
+# MyShop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MyShop é uma aplicação de e-commerce desenvolvida com React e Vite, utilizando Redux Toolkit para gerenciamento de estado.
+A aplicação permite que os usuários visualizem produtos, adicionem itens ao carrinho, façam login e logout.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Axios](https://axios-http.com/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Styled-components](https://styled-components.com/)
+- [Yarn](https://yarnpkg.com/)
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Funcionalidades
+
+- **Visualização de Produtos**: Os produtos são carregados de uma API e exibidos na interface.
+- **Carrinho de Compras**: Os usuários podem adicionar ou remover produtos do carrinho.
+- **Login e Logout**: O usuário pode fazer login e logout, com a simulação de um usuário autenticado.
+- **Total do Carrinho**: A aplicação exibe o valor total dos produtos no carrinho.
+
+
+
+## Instalação
+
+Para rodar a aplicação localmente, siga os passos abaixo:
+
+1. Clone o repositório:
+
+   ```bash
+   git clone https://github.com/mts-ml/myshop.git
+   cd myshop
+
+
+
+## Visualizar a aplicação através do GitHub pages:
+
+https://mts-ml.github.io/myshop/
