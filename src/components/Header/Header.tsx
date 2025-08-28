@@ -12,12 +12,10 @@ import * as S from "./headerStyles"
 
 export const Header: React.FC = () => {
    const { user } = useSelector((rootReducer: RootReducer) => rootReducer.userReducer)
-
-   const dispatch = useDispatch()
-
+   const { cart } = useSelector((rootReducer: RootReducer) => rootReducer.cartReducer)
    const [isLogged, setIsLogged] = useState(false)
-
    const [showCart, setShowCart] = useState(false)
+   const dispatch = useDispatch()
 
 
    function handleLogin() {
@@ -67,7 +65,7 @@ export const Header: React.FC = () => {
             </S.ButtonDiv>
          </S.Div>
 
-         <Cart showCart={showCart} handleCartClose={handleCartClose} />
+         <Cart showCart={showCart} handleCartClose={handleCartClose} cart={cart} />
       </S.StyledHeader>
    )
 }

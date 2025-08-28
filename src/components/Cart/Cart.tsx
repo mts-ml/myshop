@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { MdDeleteForever as RemoveIcon } from "react-icons/md";
-import { RootReducer } from '../../redux/root-reducer';
 import { removeProduct } from '../../redux/CartReducer/cart-slice';
+import { Product } from '../../data/products';
 
 import * as S from './cartStyles'
 
@@ -9,13 +9,12 @@ import * as S from './cartStyles'
 interface CartProps {
    showCart: boolean
    handleCartClose: () => void
+   cart: Product[]
 }
 
-export const Cart: React.FC<CartProps> = (props) => {
-   const { cart } = useSelector((rootReducer: RootReducer) => rootReducer.cartReducer)
+export const Cart: React.FC<CartProps> = ({ showCart, handleCartClose, cart }) => {
 
    const dispatch = useDispatch()
-
 
    const total = cart.reduce((total, product) => {
       return total + product.price
@@ -23,13 +22,14 @@ export const Cart: React.FC<CartProps> = (props) => {
 
 
    return (
-      <S.Aside $showCart={props.showCart}>
+      <S.Aside $showCart={showCart}>
          <S.Div>
             <S.H1>Cart</S.H1>
-            <S.CloseCartIcon onClick={props.handleCartClose} />
+
+            <S.CloseCartIcon onClick={handleCartClose} />
          </S.Div>
 
-         <S.Ul>
+         <S.Ul data-testid={'ul'}>
             {cart.map((product) => (
                <S.Li key={product.id}>
                   <S.DivLi>
@@ -37,12 +37,16 @@ export const Cart: React.FC<CartProps> = (props) => {
                      <S.Strong> ${product.price}</S.Strong>
                   </S.DivLi>
 
-                  <RemoveIcon onClick={ () => dispatch(removeProduct(product) )}></RemoveIcon>
+                  <RemoveIcon
+                     data-testid={'remove-btn'}
+                     onClick={() => dispatch(removeProduct(product))}
+                  >
+                  </RemoveIcon>
                </S.Li>
             ))}
          </S.Ul>
 
-         <S.Total>
+         <S.Total data-testid={'total'}>
             Total: ${total}
          </S.Total>
       </S.Aside >
