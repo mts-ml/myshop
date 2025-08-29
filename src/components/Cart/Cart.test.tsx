@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event"
 
 import { Cart } from "./Cart"
 import { Product } from "../../data/products"
-import { useDispatch } from "react-redux"
+import { removeProduct } from "../../redux/CartReducer/cart-slice"
 
 
 const products: Product[] = [
@@ -27,12 +27,17 @@ const products: Product[] = [
    }
 ]
 
+const mockDispatch = vitest.fn()
+
 // Mock: tornar a biblioteca react-redux fake
 vitest.mock('react-redux', () => {
    return {
-      useDispatch: () => {}
+      useDispatch: () => {
+         return mockDispatch
+      }
    }
 })
+
 
 describe("Cart > Unit Tests", () => {
    it("should render empty cart correctly", () => {
@@ -77,12 +82,12 @@ describe("Cart > Unit Tests", () => {
    })
 
    it('should remove product when remove button is clicked', async () => {
-      render(<Cart showCart={true} handleCartClose={() => { }} cart={products} />)
+      render(<Cart showCart={true} handleCartClose={() => { }} cart={[products[0]]} />)
 
-      const removeButtons = screen.getAllByTestId('remove-btn')
-      const removeButton = removeButtons[0]
+      const removeBtn = screen.getByTestId('remove-btn')
+      await userEvent.click(removeBtn)
 
-      await userEvent.click(removeButton)
-      expect(removeButtons.length).toBeLessThan(2)
+      expect(mockDispatch).toHaveBeenCalled()
+      expect(mockDispatch).toHaveBeenLastCalledWith(removeProduct(products[0]))
    })
 })
